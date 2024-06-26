@@ -416,7 +416,7 @@
             0.0372315985079365,
             0.04367110824390244
         ],
-        "functionality": [
+        "Functionality Issues": [
             0.0,
             0.0,
             1.0,
@@ -468,7 +468,7 @@
             24.0,
             15.0
         ],
-        "performance": [
+        "Performance Issues": [
             0.0,
             0.0,
             1.0,
@@ -520,7 +520,7 @@
             6.0,
             3.0
         ],
-        "design": [
+        "UI / Design Issues": [
             2.0,
             3.0,
             5.0,
@@ -572,7 +572,7 @@
             0.0,
             3.0
         ],
-        "crashes": [
+        "Crashing Issues": [
             0.0,
             0.0,
             0.0,
@@ -624,7 +624,7 @@
             3.0,
             0.0
         ],
-        "userExperience": [
+        "User Experience Issues": [
             0.0,
             0.0,
             2.0,
@@ -676,7 +676,7 @@
             7.0,
             5.0
         ],
-        "security": [
+        "Security Related Issues": [
             0.0,
             0.0,
             0.0,
@@ -728,7 +728,7 @@
             0.0,
             0.0
         ],
-        "developerRelated": [
+        "Developer Related Issues": [
             0.0,
             0.0,
             0.0,
@@ -780,7 +780,7 @@
             0.0,
             0.0
         ],
-        "content": [
+        "Content and Media Issues": [
             0.0,
             0.0,
             1.0,

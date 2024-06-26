@@ -39,12 +39,11 @@ $("#myTable").DataTable({
     scrollY: "300px",
     data: [],
     columns: [
-        { data: 'content', title: 'Review'},
+        {data: 'content', title: 'Review'},
         {data: 'score', title: 'Score'},
         {data: 'sentiment', title: 'Sentiment'},
         {data: 'toxicity', title: 'Toxicity'},
         {data: 'reviewCreatedVersion', title: 'Version'},
-        // {data: 'at', title: 'Date'},
     ],
     "order": [[ 5, "desc" ]],
     "pageLength": 10,
@@ -124,13 +123,13 @@ function render(appData){
     $('#toxicity').text((appData['toxicity'].reduce((acc, item) => acc + item, 0) / appData['toxicity'].length).toFixed(2));
     $('#rating').text((appData['rating'].reduce((acc, item) => acc + item, 0) / appData['rating'].length).toFixed(2));
     let issueCount = 0;
-    issueCount += appData['crashes'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['performance'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['design'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['functionality'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['security'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['userExperience'].reduce((acc, item) => acc + item, 0);
-    issueCount += appData['developerRelated'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['Crashing Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['Performance Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['UI / Design Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['Functionality Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['Security Related Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['User Experience Issues'].reduce((acc, item) => acc + item, 0);
+    issueCount += appData['Developer Related Issues'].reduce((acc, item) => acc + item, 0);
     $('#issuesCount').text(issueCount);
     
     // create the chart
@@ -187,13 +186,13 @@ function filterVersions(data, versions){
     filteredData['rating'] = versions.map((version) => data['rating'][data['versions'].indexOf(version)]);
     filteredData['sentiment'] = versions.map((version) => data['sentiment'][data['versions'].indexOf(version)]);
     filteredData['toxicity'] = versions.map((version) => data['toxicity'][data['versions'].indexOf(version)]);
-    filteredData['crashes'] = versions.map((version) => data['crashes'][data['versions'].indexOf(version)]);
-    filteredData['performance'] = versions.map((version) => data['performance'][data['versions'].indexOf(version)]);
-    filteredData['design'] = versions.map((version) => data['design'][data['versions'].indexOf(version)]);
-    filteredData['functionality'] = versions.map((version) => data['functionality'][data['versions'].indexOf(version)]);
-    filteredData['security'] = versions.map((version) => data['security'][data['versions'].indexOf(version)]);
-    filteredData['userExperience'] = versions.map((version) => data['userExperience'][data['versions'].indexOf(version)]);
-    filteredData['developerRelated'] = versions.map((version) => data['developerRelated'][data['versions'].indexOf(version)]);
+    filteredData['Crashing Issues'] = versions.map((version) => data['Crashing Issues'][data['versions'].indexOf(version)]);
+    filteredData['Performance Issues'] = versions.map((version) => data['Performance Issues'][data['versions'].indexOf(version)]);
+    filteredData['UI / Design Issues'] = versions.map((version) => data['UI / Design Issues'][data['versions'].indexOf(version)]);
+    filteredData['Functionality Issues'] = versions.map((version) => data['Functionality Issues'][data['versions'].indexOf(version)]);
+    filteredData['Security Related Issues'] = versions.map((version) => data['Security Related Issues'][data['versions'].indexOf(version)]);
+    filteredData['User Experience Issues'] = versions.map((version) => data['User Experience Issues'][data['versions'].indexOf(version)]);
+    filteredData['Developer Related Issues'] = versions.map((version) => data['Developer Related Issues'][data['versions'].indexOf(version)]);
     filteredData['packageSmells'] = versions.map((version) => data['packageSmells'][data['versions'].indexOf(version)]);
     filteredData['methodSmells'] = versions.map((version) => data['methodSmells'][data['versions'].indexOf(version)]);
     filteredData['classSmells'] = versions.map((version) => data['classSmells'][data['versions'].indexOf(version)]);
@@ -204,7 +203,7 @@ function filterVersions(data, versions){
 function createIssuesDistributionChart(data){
     let issuesDistributionCtx = document.getElementById('issuesDistChart');
 
-    let labels = ['crashes', 'performance', 'design', 'functionality', 'security', 'userExperience', 'developerRelated'];
+    let labels = ['Crashing Issues', 'Performance Issues', 'UI / Design Issues', 'Functionality Issues', 'Security Related Issues', 'User Experience Issues', 'Developer Related Issues'];
     let chartData = labels.map((label) => {
         return data[label].reduce((acc, item) => acc + item, 0);
     });
@@ -275,7 +274,7 @@ function createIssuesDistributionChart(data){
             }
         }
     }
-    console.log("creating a new chart");
+
     if(issuesDistChart != undefined){
         issuesDistChart.destroy();
     }
@@ -304,31 +303,31 @@ function createChart(data) {
             },
             {
                 label: 'Performance Issues',
-                data: data['performance'],
+                data: data['Performance Issues'],
                 borderColor: 'rgba(255, 206, 86, 1)',
                 backgroundColor: 'rgba(255, 206, 86, 0.2)',
             },
             {
                 label: 'UI / Design Issues',
-                data: data['design'],
+                data: data['UI / Design Issues'],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
             },
             {
                 label: 'Functionality Issues',
-                data: data['functionality'],
+                data: data['Functionality Issues'],
                 borderColor: 'rgba(153, 102, 255, 1)',
                 backgroundColor: 'rgba(153, 102, 255, 0.2)',
             },
             {
                 label: 'Security Related Issues',
-                data: data['security'],
+                data: data['Security Related Issues'],
                 borderColor: 'rgba(255, 159, 64, 1)',
                 backgroundColor: 'rgba(255, 159, 64, 0.2)',
             },
             {
                 label: 'User Experience Issues',
-                data: data['userExperience'],
+                data: data['User Experience Issues'],
                 borderColor: 'rgba(25, 19, 132, 1)',
                 backgroundColor: 'rgba(25, 19, 132, 0.2)',
             },
@@ -383,7 +382,7 @@ function createChart(data) {
                 },
                 ticks: {
                     callback: function(value, index, values) {
-                        return dates[index];
+                        return dates[index].split('T')[0];
                     }
                 },
             },
@@ -472,7 +471,7 @@ function createRatingChart(labels, dates, data){
                     },
                     ticks: {
                         callback: function(value, index, values) {
-                            return dates[index];
+                            return dates[index].split('T')[0];
                         }
                     },
                 },
@@ -562,7 +561,7 @@ function createSentimentChart(labels, dates, data){
                     },
                     ticks: {
                         callback: function(value, index, values) {
-                            return dates[index];
+                            return dates[index].split('T')[0];
                         }
                     },
                 },
@@ -651,7 +650,7 @@ function createToxicityChart(labels, dates, data){
                     },
                     ticks: {
                         callback: function(value, index, values) {
-                            return dates[index];
+                            return dates[index].split('T')[0];
                         },
                     },
                 },
@@ -733,7 +732,7 @@ function createPackageSmellsChart(data){
                 },
                 ticks: {
                     callback: function(value, index, values) {
-                        return dates[index];
+                        return dates[index].split('T')[0];
                     }
                 },
             },
@@ -807,7 +806,7 @@ function createMethodSmellsChart(data){
                 },
                 ticks: {
                     callback: function(value, index, values) {
-                        return dates[index];
+                        return dates[index].split('T')[0];
                     }
                 },
             },
@@ -880,7 +879,7 @@ function createClassSmellsChart(data){
                 },
                 ticks: {
                     callback: function(value, index, values) {
-                        return dates[index];
+                        return dates[index].split('T')[0];
                     }
                 },
             },
